@@ -1,12 +1,7 @@
-import { DefaultHandler } from "htmlparser2";
-import * as React from "react";
-
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
 import Flex from "./../Common/Flex";
-import Btn from "./../Common/Btn";
-
-//import '../components/css/View.css';
+import { useNavigate } from "react-router-dom";
 
 // getting the values of local storage
 const getDatafromLS = () => {
@@ -19,48 +14,22 @@ const getDatafromLS = () => {
 };
 
 export const PersonalDetails = () => {
-  // main array of objects state || books state || books array of objects
-  const [details, setdetails] = useState(getDatafromLS());
-
-  // input field states
+  const navigate = useNavigate();
   const [name, setName] = useState("");
-  // const [gender, setGender] = useState("");
-  // const [dob, setDob] = useState("");
-  // const [phone, setPhone] = useState("");
-  // const [email, setMail] = useState("");
 
   // form submit event
   const handleAddBookSubmit = (e) => {
     e.preventDefault();
-    // creating an object
+
     let details = {
+      ...getDatafromLS(),
       name,
-      // gender,
-      // dob,
-      // email,
-      // phone,
     };
-    setdetails([details]);
-    setName("");
-    // setGender("");
-    // setDob("");
-    // setMail("");
-    // setPhone("");
-  };
 
-  // saving data to local storage
-  useEffect(() => {
     localStorage.setItem("details", JSON.stringify(details));
-  });
 
-  // useEffect(() => {
-  //   const userData = JSON.parse(
-  //     localStorage.setItem("details", JSON.stringify(details))
-  //   );
-  //   if (userData) {
-  //     setName(userData);
-  //   }
-  // });
+    navigate("/genderpage");
+  };
 
   const title = "Your name";
   const steps = " 3 ";
@@ -97,20 +66,21 @@ export const PersonalDetails = () => {
                   value={name}
                 ></input>
                 <br></br>
-
-                {/* <input type="email" placeholder="email" className='form-control' required onChange={(e)=>setMail(e.target.value)} value={email}></input>
-            <br></br>
-            
-            <input type="tel" placeholder="phone" className='form-control' required onChange={(e)=>setPhone(e.target.value)} value={phone}></input>
-            <br></br>
-           <button type="submit" className='btn btn-success btn-md'>
-              ADD
-            </button>  */}
                 <div className="d-flex justify-content-end">
-                  <Btn information="/genderpage" />
-                  {/* <button className="btn btn-dark mx-5 px-5 my-3" type="submit">
-                  <label>Next</label>
-                </button> */}
+                  <div className="d-flex justify-content-end">
+                    <div className="ms-5 me-5 mt-4">
+                      <div className="d-flex justify-content-end ">
+                        <button className="next" type="submit">
+                          <span
+                            style={{ color: "#FFF" }}
+                            className="btn mx-4 text-align-center link"
+                          >
+                            Next
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </form>
             </div>

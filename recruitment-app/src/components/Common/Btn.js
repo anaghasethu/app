@@ -7,7 +7,7 @@ const Btn = (props) => {
     <div className="d-flex justify-content-end">
       <div className="ms-5 me-5 mt-4">
         <div className="d-flex justify-content-end ">
-          <button className="next">
+          <button className="next" type="submit">
             <Link
               to={props.information}
               style={{ color: "#FFF" }}

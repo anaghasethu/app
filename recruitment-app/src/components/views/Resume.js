@@ -5,7 +5,6 @@ import Flex from "../Common/Flex";
 import Btn from "../Common/Btn";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Logo from "../Common/Logo";
 
 const Resume = () => {
   const title = "Upload your resume";
